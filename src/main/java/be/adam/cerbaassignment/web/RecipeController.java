@@ -1,5 +1,6 @@
 package be.adam.cerbaassignment.web;
 
+import be.adam.cerbaassignment.repository.Recipe;
 import be.adam.cerbaassignment.service.RecipeService;
 import be.adam.cerbaassignment.web.api.IngredientRequest;
 import be.adam.cerbaassignment.web.api.RecipeRequest;
@@ -9,6 +10,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static java.util.Comparator.comparing;
 
 @RestController
 @RequestMapping("/recipes")
@@ -21,24 +24,28 @@ public class RecipeController {
     @GetMapping
     public List<RecipeResponse> getAllRecipes() {
         return recipeService.getRecipes().stream()
+                .sorted(comparing(Recipe::getName))
                 .map(recipe -> modelMapper.map(recipe, RecipeResponse.class))
                 .toList();
     }
 
     @GetMapping("/{recipeId}")
     public RecipeResponse getRecipe(@PathVariable Long recipeId) {
-        return modelMapper.map(recipeService.getRecipe(recipeId), RecipeResponse.class);
+        var recipe = recipeService.getRecipe(recipeId);
+        return modelMapper.map(recipe, RecipeResponse.class);
     }
 
     @PostMapping
     public RecipeResponse addRecipe(@RequestBody RecipeRequest recipeRequest) {
-        return modelMapper.map(recipeService.createRecipe(recipeRequest), RecipeResponse.class);
+        var recipe = recipeService.createRecipe(recipeRequest);
+        return modelMapper.map(recipe, RecipeResponse.class);
     }
 
     @PutMapping("/{recipeId}")
     public RecipeResponse updateRecipe(@PathVariable Long recipeId,
                                        @RequestBody RecipeRequest recipeRequest) {
-        return modelMapper.map(recipeService.updateRecipe(recipeId, recipeRequest), RecipeResponse.class);
+        var recipe = recipeService.updateRecipe(recipeId, recipeRequest);
+        return modelMapper.map(recipe, RecipeResponse.class);
     }
 
     @DeleteMapping("/{recipeId}")

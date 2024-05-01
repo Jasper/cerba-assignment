@@ -1,3 +1,9 @@
 package be.adam.cerbaassignment.web.api;
 
-public record IngredientRequest(String name, String quantity) { }
+import lombok.Value;
+
+@Value
+public class IngredientRequest {
+    String name;
+    String quantity;
+}

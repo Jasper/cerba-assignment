@@ -3,9 +3,9 @@ package be.adam.cerbaassignment.web.api;
 import lombok.Data;
 
 @Data
-public final class IngredientResponse {
+public class IngredientResponse {
 
-    private Long id;
-    private String name;
-    private String quantity;
+    Long id;
+    String name;
+    String quantity;
 }

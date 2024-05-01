@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static java.util.Comparator.comparing;
-
 @Service
 @RequiredArgsConstructor
 public class RecipeService {
@@ -20,9 +18,7 @@ public class RecipeService {
     private final IngredientRepository ingredientRepository;
 
     public List<Recipe> getRecipes() {
-        return recipeRepository.findAll().stream()
-                .sorted(comparing(Recipe::getName))
-                .toList();
+        return recipeRepository.findAll();
     }
 
     public Recipe getRecipe(Long recipeId) {

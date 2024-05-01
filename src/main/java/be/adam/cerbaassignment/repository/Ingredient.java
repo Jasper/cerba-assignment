@@ -22,8 +22,8 @@ public class Ingredient extends Auditable {
 
     public static Ingredient of(IngredientRequest ingredientRequest) {
         Ingredient ingredient = new Ingredient();
-        ingredient.name = ingredientRequest.name();
-        ingredient.quantity = ingredientRequest.quantity();
+        ingredient.name = ingredientRequest.getName();
+        ingredient.quantity = ingredientRequest.getQuantity();
         return ingredient;
     }
 

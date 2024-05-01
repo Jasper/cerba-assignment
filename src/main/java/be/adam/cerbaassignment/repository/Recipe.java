@@ -36,16 +36,16 @@ public class Recipe extends Auditable {
 
     public static Recipe of(RecipeRequest recipeRequest) {
         Recipe recipe = new Recipe();
-        recipe.name = recipeRequest.name();
-        recipe.description = recipeRequest.description();
-        recipe.instructions = recipeRequest.instructions();
+        recipe.name = recipeRequest.getName();
+        recipe.description = recipeRequest.getDescription();
+        recipe.instructions = recipeRequest.getInstructions();
         return recipe;
     }
 
     public void update(RecipeRequest recipeRequest) {
-        this.name = recipeRequest.name();
-        this.description = recipeRequest.description();
-        this.instructions = recipeRequest.instructions();
+        this.name = recipeRequest.getName();
+        this.description = recipeRequest.getDescription();
+        this.instructions = recipeRequest.getInstructions();
     }
 
     public void addIngredient(IngredientRequest ingredientRequest) {
