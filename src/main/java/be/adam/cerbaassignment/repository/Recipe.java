@@ -7,9 +7,6 @@ import lombok.Getter;
 
 import java.util.List;
 
-import static java.util.Collections.emptyList;
-import static java.util.Comparator.comparing;
-
 @Entity
 @Table(name = "recipes")
 @Getter
@@ -23,16 +20,6 @@ public class Recipe extends Auditable {
     private String instructions;
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Ingredient> ingredients;
-
-    public List<Ingredient> getIngredients() {
-        if (this.ingredients == null) {
-            return emptyList();
-        }
-
-        return ingredients.stream()
-                .sorted(comparing(Ingredient::getName))
-                .toList();
-    }
 
     public static Recipe of(RecipeRequest recipeRequest) {
         Recipe recipe = new Recipe();
