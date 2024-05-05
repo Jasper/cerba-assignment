@@ -1,4 +1,5 @@
 # Cerba Research Assigment
+Cerba Research assignment project by Jasper Adam
 
 ## Database Configuration
 To run the application you will need a PostgresQL server running locally.
