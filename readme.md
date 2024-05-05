@@ -12,6 +12,9 @@ The application uses the following properties to connect to the database:
 
 You can change these in application-local.properties.
 
+The application uses Flyway to manage schema migrations.
+When the application starts, it will automatically create the tables it needs.
+
 ## Application tests
 The application contains tests for the web and service layer.
 You can run these using the maven test command.
