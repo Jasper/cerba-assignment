@@ -2,6 +2,7 @@ package be.adam.cerbaassignment.repository;
 
 import org.springframework.test.util.ReflectionTestUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeFixture {
@@ -11,17 +12,20 @@ public class RecipeFixture {
     public static String DESCRIPTION = "Test Description";
     public static String INSTRUCTIONS = "Test Instructions";
     public static List<Ingredient> INGREDIENTS =
-            List.of(
-                    IngredientFixture.create()
+            new ArrayList<>() {
+                {
+                    add(IngredientFixture.create()
                             .id(3L)
                             .name("Ingredient C")
-                            .build(),
-                    IngredientFixture.create()
+                            .build());
+                    add(IngredientFixture.create()
                             .id(2L)
                             .name("Ingredient B")
-                            .build(),
-                    IngredientFixture.create().build()
-            );
+                            .build());
+                    add(IngredientFixture.create().build());
+                }
+            };
+    ;
 
     private Long id = ID;
     private String name = NAME;
